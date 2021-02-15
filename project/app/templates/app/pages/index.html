@@ -1,0 +1,72 @@
+{% extends 'app/pages/base.html' %}
+{% load cloudinary %}
+{% load static %}
+
+{% block title %}{% endblock title%}
+
+{% block content %}
+  <section class 'mt-5'>
+    {% comment %}
+    <div id='id_wistia'>
+      <script src="https://fast.wistia.com/embed/medias/beb6fxz2dk.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><span class="wistia_embed wistia_async_beb6fxz2dk popover=true popoverAnimateThumbnail=true videoFoam=true" style="display:inline-block;height:100%;position:relative;width:100%">&nbsp;</span></div></div>
+    </div>
+    {% endcomment %}
+    <div class='jumbotron'>
+      <div class='mb-5'>
+        <h2 class='text-center'>
+          <strong>Help West Ada!</strong>
+        </h2>
+      </div>
+      <div>
+        <p>
+          On Tuesday February 9th, the West Ada School Board voted 4-1 to bring the kids all in school, Full-Time, In-Person, K-12 by March 29 (moved up from the original date of April 13.)  This timetable &mdash; while supported by the District &mdash; does produce some operational gaps that we as parent volunteers can help fill.
+        </p>
+        <p>
+          This site was created as a clearinghouse to help match open roles to willing participants.  By simplyfing the process and adding a bit of social benefit, we hope that it will become a lot easier to Help West Ada.
+        </p>
+        <p>
+          Please <a href='{% url "join" %}'>join us</a>!  The site is free, your personal information is protected, and you can help us keep the kids all in school.
+        </p>
+      </div>
+      {% comment %}
+      <div class='mb-5'>
+        <h2 class='text-center'>
+          Let's Get <strong>Help West Ada</strong> School!
+        </h2>
+      </div>
+      {% endcomment %}
+      <div class='mb-3'>
+        <a href='{% url "join" %}' class="btn btn-success btn-block btn-lg">
+          Join us!
+        </a>
+      </div>
+    </div>
+  </section>
+  {% comment %}
+  <section class='mt-5'>
+    <div class="card">
+      <h5 class="card-header">Community Members</h5>
+      <div class="card-body">
+        <h5 class="card-title">Our movement currently has {{total}} members.</h5>
+        <p>Of the {{total}}, here are those who have elected to share their names publicly:</p>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for account in accounts %}
+              <tr>
+                <td>{{account.name}}</td>
+                <td>{{account.comments}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  {% endcomment %}
+{% endblock content %}

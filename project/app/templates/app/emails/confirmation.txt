@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Thank you for joining Help West Ada!
+
+We've just started this site and are still working out details of how it will work.  So for the time being please simply consider this email a friendly "Welcome!" and notification that as things develop I'll be certain to keep you updated.
+
+In the meantime if you need to reach me please don't hesitate to reach out at this email or by phone at 415.713.2126.
+
+Best,
+Dave
+
+
+{% endautoescape %}

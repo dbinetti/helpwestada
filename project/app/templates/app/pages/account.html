@@ -1,0 +1,42 @@
+{% extends 'app/pages/base.html' %}
+
+{% load bootstrap4 %}
+{% load humanize %}
+
+{% block formmedia %}{{ form.media }}{% endblock formmedia %}
+
+{% block title %}Account Information{% endblock title %}
+
+{% block content %}
+  <section class='my-5'>
+    <h2>
+      Thank You for Helping West Ada!
+    </h2>
+  <section class='my-5'>
+    <div class='card'>
+      {# <h4 class='card-header'>Account Information</h4> #}
+      <div class="card-body">
+        <div class='card-text'>
+          <form method='post'>
+            {% csrf_token %}
+            {% bootstrap_form_errors form %}
+
+            {% bootstrap_field form.name show_help=False show_label=False placeholder="Name" %}
+            {% bootstrap_button "Save" button_type='submit' size='large' %}
+            {% bootstrap_button "Cancel" button_type='link' href="/account" size='large' button_class='btn-light' extra_classes='ml-3'%}
+          </form>
+        </div>
+      </div>
+      <div class='card-footer'>
+          <div class='row'>
+            <div class='col-7'>
+              <small class='text-muted'>Please contact <a href='mailto://support@helpwestada.com'>support@helpwestada.com</a> if you have any questions or need support.</small>
+            </div>
+            <div class='col-3 offset-2 text-right'>
+              <a href='{% url "delete" %}'><span class='text-danger'>Delete Account</span></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
