@@ -37,17 +37,6 @@ class Account(models.Model):
     is_public = models.BooleanField(
         default=False,
     )
-    is_teacher = models.BooleanField(
-        default=False,
-    )
-    is_medical = models.BooleanField(
-        default=False,
-    )
-    comments = models.TextField(
-        max_length=2000,
-        blank=True,
-        default='',
-    )
     notes = models.TextField(
         max_length=2000,
         blank=True,
@@ -72,7 +61,6 @@ class Account(models.Model):
 
 
 class School(models.Model):
-
     LEVEL = Choices(
         (510, 'ps', 'Preschool'),
         (520, 'elem', 'Elementary'),
@@ -82,22 +70,6 @@ class School(models.Model):
         (555, 'secondary', 'Secondary'),
         (560, 'a', 'Adult'),
         (570, 'ug', 'Ungraded'),
-    )
-    GRADE = Choices(
-        (-1, 'p', 'Preschool'),
-        (0, 'k', 'Kindergarten'),
-        (1, 'first', 'First Grade'),
-        (2, 'second', 'Second Grade'),
-        (3, 'third', 'Third Grade'),
-        (4, 'fourth', 'Fourth Grade'),
-        (5, 'fifth', 'Fifth Grade'),
-        (6, 'sixth', 'Sixth Grade'),
-        (7, 'seventh', 'Seventh Grade'),
-        (8, 'eighth', 'Eighth Grade'),
-        (9, 'ninth', 'Ninth Grade'),
-        (10, 'tenth', 'Tenth Grade'),
-        (11, 'eleventh', 'Eleventh Grade'),
-        (12, 'twelfth', 'Twelfth Grade'),
     )
     id = HashidAutoField(
         primary_key=True,
@@ -117,46 +89,10 @@ class School(models.Model):
         null=True,
         unique=True,
     )
-    low_grade = models.IntegerField(
-        blank=True,
-        choices=GRADE,
-        null=True,
-    )
-    high_grade = models.IntegerField(
-        blank=True,
-        choices=GRADE,
-        null=True,
-    )
-    grades = ArrayField(
-        models.IntegerField(
-            choices=GRADE,
-        ),
+    address = AddressField(
         blank=True,
         null=True,
-    )
-    address = models.CharField(
-        max_length=255,
-        blank=True,
-        default='',
-    )
-    city = models.CharField(
-        max_length=255,
-        blank=False,
-        default='',
-    )
-    state = models.CharField(
-        max_length=255,
-        blank=False,
-        default='',
-    )
-    zipcode = models.CharField(
-        max_length=255,
-        blank=True,
-        default='',
-    )
-    county = models.CharField(
-        max_length=255,
-        blank=True,
+        on_delete=models.CASCADE,
     )
     phone = models.CharField(
         max_length=255,
@@ -166,18 +102,6 @@ class School(models.Model):
     website = models.URLField(
         blank=True,
         default='',
-    )
-    lat = models.DecimalField(
-        max_digits=10,
-        decimal_places=6,
-        null=True,
-        blank=True,
-    )
-    lon = models.DecimalField(
-        max_digits=10,
-        decimal_places=6,
-        null=True,
-        blank=True,
     )
     created = models.DateTimeField(
         auto_now_add=True,
@@ -192,61 +116,31 @@ class School(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-    def location(self):
-        return (self.lat, self.lon)
-
-    def grades_display(self):
-        return [self.GRADE[x] for x in self.grades]
-
-    def should_index(self):
-        return True
-
     # class Meta:
     #     indexes = [
     #         GinIndex(fields=['search_vector'])
     #     ]
 
 
-class Student(models.Model):
+class Member(models.Model):
     id = HashidAutoField(
         primary_key=True,
-    )
-    name = models.CharField(
-        max_length=100,
-        blank=False,
-        default='',
-        help_text="""Please add your student's name or initials.  Will remain private!""",
-    )
-    GRADE = Choices(
-        (-1, 'p', 'Preschool'),
-        (0, 'k', 'Kindergarten'),
-        (1, 'first', 'First Grade'),
-        (2, 'second', 'Second Grade'),
-        (3, 'third', 'Third Grade'),
-        (4, 'fourth', 'Fourth Grade'),
-        (5, 'fifth', 'Fifth Grade'),
-        (6, 'sixth', 'Sixth Grade'),
-        (7, 'seventh', 'Seventh Grade'),
-        (8, 'eighth', 'Eighth Grade'),
-        (9, 'ninth', 'Ninth Grade'),
-        (10, 'tenth', 'Tenth Grade'),
-        (11, 'eleventh', 'Eleventh Grade'),
-        (12, 'twelfth', 'Twelfth Grade'),
-    )
-    grade = models.IntegerField(
-        blank=False,
-        choices=GRADE,
-        help_text='Grade',
     )
     school = models.ForeignKey(
         'app.School',
         on_delete=models.CASCADE,
-        related_name='schools',
+        related_name='members',
     )
     account = models.ForeignKey(
         'app.Account',
         on_delete=models.CASCADE,
-        related_name='schools',
+        related_name='members',
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated = models.DateTimeField(
+        auto_now=True,
     )
 
 

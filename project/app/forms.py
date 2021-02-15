@@ -30,15 +30,10 @@ class AccountForm(forms.ModelForm):
             'phone',
             'email',
             'is_public',
-            'is_teacher',
-            'is_medical',
-            'comments',
             'notes',
         ]
         labels = {
             "is_public": "Make My Name Public",
-            "is_teacher": "I'm an Educator/Staff",
-            "is_medical": "I'm a Physician",
         }
         widgets = {
             'comments': forms.Textarea(
@@ -61,8 +56,6 @@ class AccountForm(forms.ModelForm):
             unless you explicity ask to be Public below.",
             'is_public': "Showing your support publicly carries more weight and \
             encourages others to join.",
-            'is_teacher': "This is only shared if you make your name public.",
-            'is_medical': "This is only shared if you make your name public.",
         }
 
 
@@ -90,8 +83,6 @@ class SchoolForm(forms.ModelForm):
             'name',
             'nces_id',
             'phone',
-            'lat',
-            'lon',
         ]
 
 

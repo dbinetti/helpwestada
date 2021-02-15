@@ -31,25 +31,17 @@ class AccountAdmin(VersionAdmin):
         'email',
         'phone',
         'is_public',
-        'is_teacher',
-        'is_medical',
-        'comments',
         'notes',
     ]
     list_display = [
         'name',
         'is_public',
-        'is_teacher',
-        'is_medical',
         'user',
-        'is_comment',
     ]
     list_editable = [
     ]
     list_filter = [
         'is_public',
-        'is_teacher',
-        'is_medical',
     ]
     search_fields = [
         'name',
@@ -63,7 +55,6 @@ class AccountAdmin(VersionAdmin):
         'created',
     ]
     readonly_fields = [
-        'is_comment',
     ]
     formfield_overrides = {
         AddressField: {
@@ -75,10 +66,6 @@ class AccountAdmin(VersionAdmin):
         }
     }
 
-    def is_comment(self, obj):
-        return bool(obj.comments)
-    is_comment.boolean = True
-
 
 @admin.register(School)
 class SchoolAdmin(VersionAdmin):
@@ -87,31 +74,17 @@ class SchoolAdmin(VersionAdmin):
         'kind',
         'level',
         'nces_id',
-        # 'grades',
-        'low_grade',
-        'high_grade',
         'address',
-        'city',
-        'state',
-        'zipcode',
-        'county',
         'phone',
         'website',
-        'lat',
-        'lon',
     ]
     list_display = [
         'name',
         'level',
         'nces_id',
-        'low_grade',
-        'high_grade',
-        'city',
-        'state',
+        'address',
         'phone',
         'website',
-        'lat',
-        'lon',
         'created',
         'updated',
     ]
