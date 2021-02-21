@@ -96,7 +96,7 @@ SESSION_SERIALIZER = 'app.serializers.HashidJSONEncoder'
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 EMAIL_CONFIG = env.email_url('EMAIL_URL')
 vars().update(EMAIL_CONFIG)
-DATALAKE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DATALAKE_STORAGE = None
 
 # Static File Management
 STATIC_ROOT = root('staticfiles')
