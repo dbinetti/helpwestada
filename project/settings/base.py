@@ -115,7 +115,6 @@ PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'US'
 
 # Sentry
-
 SENTRY_DSN = env("SENTRY_DSN")
 SENTRY_ENVIRONMENT = env("SENTRY_ENVIRONMENT")
 SENTRY_CONFIG = {
@@ -126,6 +125,7 @@ SENTRY_CONFIG = {
 # PostHog
 POSTHOG_API_KEY = env("POSTHOG_API_KEY")
 POSTHOG_HOST = env("POSTHOG_HOST")
+
 # Bootstrap
 BOOTSTRAP4 = {
     "css_url": {
@@ -254,6 +254,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'bootstrap4',
     'phonenumber_field',
+    'django_sendgrid_tracking',
     'address',
     'app',
 ]
