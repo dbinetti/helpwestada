@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 
 # Local
 from .models import Account
-from .models import Email
 from .models import School
 from .models import User
 
@@ -84,44 +83,6 @@ class SchoolForm(forms.ModelForm):
             'nces_id',
             'phone',
         ]
-
-
-class EmailForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['to_email'].required = False
-        self.fields['from_email'].required = False
-        self.fields['to'] = self.fields['to_email']
-        self.fields['from'] = self.fields['from_email']
-        # self.fields['attachments'] = forms.IntegerField()
-
-    def clean(self):
-        cleaned_data = super().clean()
-        cleaned_data['to_email'] = self.cleaned_data.pop('to')
-        cleaned_data['from_email'] = self.cleaned_data.pop('from')
-        return cleaned_data
-
-    class Meta:
-        model = Email
-        fields = [
-            'headers',
-            'dkim',
-            'to_email',
-            'html',
-            'from_email',
-            'text',
-            'sender_ip',
-            'envelope',
-            'attachments',
-            'subject',
-            'charsets',
-            'SPF',
-        ]
-        widget = {
-            'to_email': forms.HiddenInput,
-            'from_email': forms.HiddenInput,
-        }
 
 
 class UserCreationForm(UserCreationFormBase):

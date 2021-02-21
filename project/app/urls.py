@@ -28,6 +28,4 @@ urlpatterns = [
     # Delete
     path('delete', views.delete, name='delete',),
 
-    # EMail
-    path('inbound', views.inbound, name='inbound',),
 ]

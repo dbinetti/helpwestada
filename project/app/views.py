@@ -22,7 +22,6 @@ from django.views.decorators.http import require_POST
 
 from .forms import AccountForm
 from .forms import DeleteForm
-from .forms import EmailForm
 from .models import Account
 from .models import User
 from .tasks import account_update
@@ -186,30 +185,3 @@ def delete(request):
         'app/pages/delete.html',
         {'form': form,},
     )
-
-
-@csrf_exempt
-@require_POST
-@transaction.atomic
-def inbound(request):
-    form = EmailForm(request.POST)
-    if form.is_valid():
-        email = form.save(commit=False)
-        try:
-            user = User.objects.get(
-                email=email.from_email,
-            )
-        except User.DoesNotExist:
-            user = None
-        email.kind = email.KIND.inbound
-        email.user = user
-        email.save()
-        email = EmailMessage(
-            subject='KAN Inbound',
-            body=f'{email.from_email}\n{email.subject}\n{email.text}',
-            from_email='inbound@helpwestada.com',
-            to=['dbinetti@gmail.com'],
-        )
-        send_email.delay(email)
-        return HttpResponse(status=200)
-    raise Exception(form.errors)

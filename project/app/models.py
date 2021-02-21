@@ -2,7 +2,6 @@
 # First-Party
 from address.models import AddressField
 from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from hashid_field import HashidAutoField
 from model_utils import Choices
@@ -135,110 +134,6 @@ class Member(models.Model):
         'app.Account',
         on_delete=models.CASCADE,
         related_name='members',
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
-
-
-class Email(models.Model):
-    id = HashidAutoField(
-        primary_key=True,
-    )
-    KIND = Choices(
-        (100, 'inbound', 'Inbound'),
-        (200, 'outbound', 'Outbound'),
-    )
-    kind = models.IntegerField(
-        blank=True,
-        null=True,
-        choices=KIND,
-    )
-    headers = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Headers',
-    )
-    dkim = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='DomainKeys Identified Mail',
-    )
-    to_email = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='To',
-    )
-    cc = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='cc',
-    )
-    text = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Text',
-    )
-    html = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='HTML',
-    )
-    from_email = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='From',
-    )
-    sender_ip = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Sender IP',
-    )
-    spam_report = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Spam report',
-    )
-    envelope = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Envelope',
-    )
-    attachments = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Attachments',
-    )
-    subject = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Subject',
-    )
-    spam_score = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Spam score',
-    )
-    charsets = models.TextField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name='Charsets',
-    )
-    SPF = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name='Sender Policy Framework',
-    )
-    user = models.ForeignKey(
-        'app.User',
-        on_delete=models.SET_NULL,
-        related_name='emails',
-        null=True,
-        blank=True,
     )
     created = models.DateTimeField(
         auto_now_add=True,

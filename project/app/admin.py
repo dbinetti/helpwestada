@@ -12,14 +12,8 @@ from reversion.admin import VersionAdmin
 from .forms import UserChangeForm
 from .forms import UserCreationForm
 from .models import Account
-from .models import Email
 from .models import School
 from .models import User
-
-
-@admin.register(Email)
-class EmailAdmin(VersionAdmin):
-    save_on_top = True
 
 
 @admin.register(Account)
