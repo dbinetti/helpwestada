@@ -255,7 +255,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'bootstrap4',
     'phonenumber_field',
-    'django_sendgrid_tracking',
     'address',
     'app',
 ]

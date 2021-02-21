@@ -38,7 +38,6 @@ nameparser = "*"
 pyjwt = "*"
 django-reversion = "*"
 django-cloudinary-storage = "*"
-django-sendgrid-tracking = "*"
 
 [requires]
 python_version = "3.9"
