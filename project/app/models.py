@@ -18,20 +18,17 @@ class Account(models.Model):
     name = models.CharField(
         max_length=100,
         blank=False,
-        default='',
     )
     address = AddressField(
-        blank=True,
+        blank=False,
         null=True,
         on_delete=models.CASCADE,
     )
     email = models.EmailField(
-        blank=True,
-        null=True,
+        blank=False,
     )
     phone = PhoneNumberField(
-        blank=True,
-        null=True,
+        blank=False,
     )
     is_public = models.BooleanField(
         default=False,
@@ -57,6 +54,20 @@ class Account(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    # is_bilingual = models.BooleanField(
+    #     default=False,
+    # )
+    # is_credential = models.BooleanField(
+    #     default=False,
+    # )
+    # is_clear = models.BooleanField(
+    #     default=False,
+    # )
+    # is_agree = models.BooleanField(
+    #     default=False,
+    # )
+
 
 
 class School(models.Model):

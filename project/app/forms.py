@@ -2,7 +2,6 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm as UserChangeFormBase
 from django.contrib.auth.forms import UserCreationForm as UserCreationFormBase
-from django.core.exceptions import ValidationError
 
 # Local
 from .models import Account
@@ -26,8 +25,9 @@ class AccountForm(forms.ModelForm):
         model = Account
         fields = [
             'name',
-            'phone',
             'email',
+            'phone',
+            'address',
             'is_public',
             'notes',
         ]
@@ -35,45 +35,22 @@ class AccountForm(forms.ModelForm):
             "is_public": "Make My Name Public",
         }
         widgets = {
-            'comments': forms.Textarea(
-                attrs={
-                    'class': 'form-control h-25',
-                    'placeholder': 'Any respectful, on-topic comments to share publicly? (Optional, Name Must Be Public)',
-                    'rows': 5,
-                }
-            ),
             'notes': forms.Textarea(
                 attrs={
                     'class': 'form-control h-25',
-                    'placeholder': 'Anything else we should know? (Optional, Private)',
+                    'placeholder': 'Anything else we should know? (Optional)',
                     'rows': 5,
                 }
-            )
+            ),
         }
-        help_texts = {
-            'name': "Please provide your real name.  Your name remains private \
-            unless you explicity ask to be Public below.",
-            'is_public': "Showing your support publicly carries more weight and \
-            encourages others to join.",
-        }
+
+        # help_texts = {
+        #     'is_bilingual': "If you speak Spanish, please click here.",
+        # }
 
 
     def clean(self):
-        cleaned_data = super().clean()
-        is_public = cleaned_data.get("is_public")
-        comments = cleaned_data.get("comments")
-        name = cleaned_data.get("name")
-
-        if comments and not is_public:
-            raise ValidationError(
-                "Comments are only shared if you make your name public."
-            )
-
-        if is_public and name == 'Anonymous':
-            raise ValidationError(
-                {'name': "Please provide your real name if you wish to be public."}
-            )
-
+        pass
 
 class SchoolForm(forms.ModelForm):
     class Meta:

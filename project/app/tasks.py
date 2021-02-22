@@ -167,17 +167,6 @@ def send_confirmation(user):
     return email.send()
 
 @job
-def account_update(account):
-    email = build_email(
-        template='app/emails/update.txt',
-        subject='KAN Update',
-        from_email='David Binetti <dbinetti@helpwestada.com>',
-        context={'account': account},
-        to=['dbinetti@gmail.com'],
-    )
-    return email.send()
-
-@job
 def account_outreach(account):
     email = build_email(
         template='app/emails/outreach.txt',

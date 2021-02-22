@@ -24,7 +24,6 @@ from .forms import AccountForm
 from .forms import DeleteForm
 from .models import Account
 from .models import User
-from .tasks import account_update
 from .tasks import send_email
 
 
@@ -147,7 +146,6 @@ def account(request):
                 request,
                 "Saved!",
             )
-            account_update.delay(account)
             return redirect('account')
     else:
         form = AccountForm(instance=account)
