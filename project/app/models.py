@@ -132,6 +132,32 @@ class School(models.Model):
     #     ]
 
 
+class Position(models.Model):
+    id = HashidAutoField(
+        primary_key=True,
+    )
+    name = models.CharField(
+        max_length=100,
+        blank=False,
+    )
+    description = models.TextField(
+        max_length=2000,
+        blank=True,
+        default='',
+    )
+    notes = models.TextField(
+        max_length=2000,
+        blank=True,
+        default='',
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated = models.DateTimeField(
+        auto_now=True,
+    )
+
+
 class Member(models.Model):
     id = HashidAutoField(
         primary_key=True,
@@ -145,6 +171,28 @@ class Member(models.Model):
         'app.Account',
         on_delete=models.CASCADE,
         related_name='members',
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated = models.DateTimeField(
+        auto_now=True,
+    )
+
+
+class Assignment(models.Model):
+    id = HashidAutoField(
+        primary_key=True,
+    )
+    position = models.ForeignKey(
+        'app.Position',
+        on_delete=models.CASCADE,
+        related_name='assignments',
+    )
+    account = models.ForeignKey(
+        'app.Account',
+        on_delete=models.CASCADE,
+        related_name='assignments',
     )
     created = models.DateTimeField(
         auto_now_add=True,
