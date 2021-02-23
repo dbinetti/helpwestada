@@ -32,7 +32,7 @@ class AccountForm(forms.ModelForm):
             'notes',
         ]
         labels = {
-            "is_public": "Make My Name Public",
+            "is_public": "You May List Me Publicly",
         }
         widgets = {
             'notes': forms.Textarea(
