@@ -69,17 +69,11 @@ class Account(models.Model):
     # )
 
 
-
 class School(models.Model):
     LEVEL = Choices(
-        (510, 'ps', 'Preschool'),
-        (520, 'elem', 'Elementary'),
-        (530, 'intmidjr', 'Intermediate/Middle/Junior High'),
-        (540, 'hs', 'High School'),
-        (550, 'elemhigh', 'Elementary-High Combination'),
-        (555, 'secondary', 'Secondary'),
-        (560, 'a', 'Adult'),
-        (570, 'ug', 'Ungraded'),
+        (100, 'elementary', 'Elementary'),
+        (200, 'middle', 'Middle'),
+        (300, 'high', 'High'),
     )
     id = HashidAutoField(
         primary_key=True,

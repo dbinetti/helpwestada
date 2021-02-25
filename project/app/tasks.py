@@ -186,7 +186,7 @@ def delete_user_email(email_address):
     )
     return email.send()
 
-def schools_list(filename='ada.csv'):
+def schools_list(filename='wasd.csv'):
     with open(filename) as f:
         reader = csv.reader(
             f,
@@ -198,18 +198,20 @@ def schools_list(filename='ada.csv'):
         i = 0
         errors = []
         output = []
+        level = {
+            'Elementary': 100,
+            'Middle': 200,
+            'High': 300,
+        }
         for row in rows:
             i += 1
             print(f"{i}/{t}")
             school = {
                 'name': str(row[0]).strip().title(),
-                'nces_school_id': int(row[1]),
-                'phone': str(row[7]),
-                # 'website': str(row[21].replace(" ", "")) if row[21] != 'No Data' else '',
-                'is_charter': True if row[9]=='1-Yes' else False,
-                'is_magnet': True if row[10]=='1-Yes' else False,
-                'latitude': float(row[12]),
-                'longitude': float(row[13]),
+                'nces_school_id': int(row[5]),
+                'phone': str(row[19]),
+                'website': str(row[6].replace(" ", "")) if row[6] !='†' else '',
+                'level': level[str(row[32])],
             }
             form = SchoolForm(school)
             if not form.is_valid():
