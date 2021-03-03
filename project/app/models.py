@@ -20,7 +20,7 @@ class Account(models.Model):
         blank=False,
     )
     address = AddressField(
-        blank=False,
+        blank=True,
         null=True,
         on_delete=models.CASCADE,
     )
