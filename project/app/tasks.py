@@ -168,6 +168,17 @@ def send_confirmation(user):
     return email.send()
 
 @job
+def send_closing(user):
+    email = build_email(
+        template='app/emails/closing.txt',
+        subject='Final Update: Help West Ada project',
+        from_email='David Binetti <dbinetti@helpwestada.com>',
+        context={'user': user},
+        to=[user.email],
+    )
+    return email.send()
+
+@job
 def account_outreach(account):
     email = build_email(
         template='app/emails/outreach.txt',

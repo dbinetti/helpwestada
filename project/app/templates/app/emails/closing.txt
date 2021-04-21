@@ -1,0 +1,30 @@
+{% autoescape off %}
+
+This will be the first -- and last -- update for the Help West Ada project.
+
+As you may recall, I set up the Help West Ada website in response to the
+District's anticipated need for substitute teachers following the move to
+full-time, in-person K-12 instruction.  And you responded to this call, signing
+up to volunteer immediately -- thank you so much!
+
+However, apparently the situation has stabilized and there is no particular need
+for a parent-specific initiative at this time.  Accordingly, I'll be shuttering
+this site, effective immediately.   While your involvement wasn't needed in this
+particular project, I'm confident in speaking for the District when I say "thank
+you for being willing to step up!"  If you wish to serve as a substitute teacher
+regardless, please find additional information here:
+
+https://www.westada.org/Page/22379
+
+As promised, as part of the shut down your account will be permanently deleted,
+along with your name, email, and any other personal information collected.  If
+you'd like to reach me for any reason, please don't hesitate to call or text at
+415.713.2126.
+
+Thank you again for all you do for our kids!
+
+
+Best, Dave
+
+
+{% endautoescape %}
