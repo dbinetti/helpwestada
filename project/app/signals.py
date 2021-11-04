@@ -15,22 +15,22 @@ from .tasks import update_user_from_account
 @receiver(pre_delete, sender=User)
 def delete_auth0(sender, instance, **kwargs):
     delete_user(instance.username)
-    delete_user_email(instance.email)
+    # delete_user_email(instance.email)
     return
 
 
-@receiver(post_save, sender=Account)
-def account_post_save(sender, instance, created, **kwargs):
-    if created:
-        return
-    update_user_from_account.delay(instance)
-    return
+# @receiver(post_save, sender=Account)
+# def account_post_save(sender, instance, created, **kwargs):
+#     if created:
+#         return
+#     update_user_from_account.delay(instance)
+#     return
 
 @receiver(post_save, sender=User)
 def user_post_save(sender, instance, created, **kwargs):
     if created:
         create_account(instance)
-        send_confirmation.delay(instance)
+        # send_confirmation.delay(instance)
         return
     update_auth0.delay(instance)
     return
