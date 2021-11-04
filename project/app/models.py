@@ -1,8 +1,9 @@
 
 # First-Party
-from address.models import AddressField
 from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django_fsm import FSMIntegerField
 from hashid_field import HashidAutoField
 from model_utils import Choices
 from phonenumber_field.modelfields import PhoneNumberField
@@ -15,14 +16,21 @@ class Account(models.Model):
     id = HashidAutoField(
         primary_key=True,
     )
+    STATE = Choices(
+        (0, 'new', 'New'),
+    )
+    state = FSMIntegerField(
+        choices=STATE,
+        default=STATE.new,
+    )
     name = models.CharField(
         max_length=100,
         blank=False,
     )
-    address = AddressField(
+    address = models.CharField(
+        max_length=512,
         blank=True,
-        null=True,
-        on_delete=models.CASCADE,
+        default='',
     )
     email = models.EmailField(
         blank=False,
@@ -30,8 +38,36 @@ class Account(models.Model):
     phone = PhoneNumberField(
         blank=False,
     )
-    is_public = models.BooleanField(
+    ssn = models.CharField(
+        max_length=100,
+        blank=False,
+    )
+    is_diploma = models.BooleanField(
         default=False,
+    )
+    is_certificate = models.BooleanField(
+        default=False,
+    )
+    is_criminal = models.BooleanField(
+        default=False,
+    )
+    criminal_notes = models.TextField(
+        blank=True,
+    )
+    is_offender = models.BooleanField(
+        default=False,
+    )
+    is_wasd = models.BooleanField(
+        default=False,
+    )
+    wasd_notes = models.TextField(
+        blank=True,
+    )
+    schools = ArrayField(
+        models.CharField(
+            max_length=255,
+        ),
+        default=list,
     )
     notes = models.TextField(
         max_length=2000,
@@ -55,145 +91,6 @@ class Account(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-    # is_bilingual = models.BooleanField(
-    #     default=False,
-    # )
-    # is_credential = models.BooleanField(
-    #     default=False,
-    # )
-    # is_clear = models.BooleanField(
-    #     default=False,
-    # )
-    # is_agree = models.BooleanField(
-    #     default=False,
-    # )
-
-
-class School(models.Model):
-    LEVEL = Choices(
-        (100, 'elementary', 'Elementary'),
-        (200, 'middle', 'Middle'),
-        (300, 'high', 'High'),
-    )
-    id = HashidAutoField(
-        primary_key=True,
-    )
-    name = models.CharField(
-        max_length=255,
-        blank=False,
-    )
-    level = models.IntegerField(
-        blank=True,
-        null=True,
-        choices=LEVEL,
-    )
-    nces_id = models.CharField(
-        max_length=50,
-        blank=True,
-        null=True,
-        unique=True,
-    )
-    address = AddressField(
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-    )
-    phone = models.CharField(
-        max_length=255,
-        blank=True,
-        default='',
-    )
-    website = models.URLField(
-        blank=True,
-        default='',
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
-    # search_vector = SearchVectorField(
-    #     null=True,
-    # )
-
-    def __str__(self):
-        return f"{self.name}"
-
-    # class Meta:
-    #     indexes = [
-    #         GinIndex(fields=['search_vector'])
-    #     ]
-
-
-class Position(models.Model):
-    id = HashidAutoField(
-        primary_key=True,
-    )
-    name = models.CharField(
-        max_length=100,
-        blank=False,
-    )
-    description = models.TextField(
-        max_length=2000,
-        blank=True,
-        default='',
-    )
-    notes = models.TextField(
-        max_length=2000,
-        blank=True,
-        default='',
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
-
-
-class Member(models.Model):
-    id = HashidAutoField(
-        primary_key=True,
-    )
-    school = models.ForeignKey(
-        'app.School',
-        on_delete=models.CASCADE,
-        related_name='members',
-    )
-    account = models.ForeignKey(
-        'app.Account',
-        on_delete=models.CASCADE,
-        related_name='members',
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
-
-
-class Assignment(models.Model):
-    id = HashidAutoField(
-        primary_key=True,
-    )
-    position = models.ForeignKey(
-        'app.Position',
-        on_delete=models.CASCADE,
-        related_name='assignments',
-    )
-    account = models.ForeignKey(
-        'app.Account',
-        on_delete=models.CASCADE,
-        related_name='assignments',
-    )
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        auto_now=True,
-    )
 
 
 class User(AbstractBaseUser):
@@ -218,21 +115,16 @@ class User(AbstractBaseUser):
         editable=False,
     )
     email = models.EmailField(
-        blank=True,
-        null=True,
-        editable=False,
-    )
-    picture = models.URLField(
-        max_length=512,
-        blank=True,
-        default='https://www.helpwestada.com/static/app/unknown_small.png',
-        verbose_name="Picture",
-        editable=False,
+        blank=False,
+        editable=True,
     )
     is_active = models.BooleanField(
         default=True,
     )
     is_admin = models.BooleanField(
+        default=False,
+    )
+    is_verified = models.BooleanField(
         default=False,
     )
     created = models.DateTimeField(

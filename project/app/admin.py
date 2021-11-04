@@ -1,7 +1,5 @@
 # Django
 # First-Party
-from address.forms import AddressWidget
-from address.models import AddressField
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
@@ -12,7 +10,6 @@ from reversion.admin import VersionAdmin
 from .forms import UserChangeForm
 from .forms import UserCreationForm
 from .models import Account
-from .models import School
 from .models import User
 
 
@@ -24,18 +21,15 @@ class AccountAdmin(VersionAdmin):
         'address',
         'email',
         'phone',
-        'is_public',
         'notes',
     ]
     list_display = [
         'name',
-        'is_public',
         'user',
     ]
     list_editable = [
     ]
     list_filter = [
-        'is_public',
     ]
     search_fields = [
         'name',
@@ -50,50 +44,6 @@ class AccountAdmin(VersionAdmin):
     ]
     readonly_fields = [
     ]
-    formfield_overrides = {
-        AddressField: {
-            'widget': AddressWidget(
-                attrs={
-                    'style': 'width: 300px;'
-                }
-            )
-        }
-    }
-
-
-@admin.register(School)
-class SchoolAdmin(VersionAdmin):
-    fields = [
-        'name',
-        'kind',
-        'level',
-        'nces_id',
-        'address',
-        'phone',
-        'website',
-    ]
-    list_display = [
-        'name',
-        'level',
-        'nces_id',
-        'address',
-        'phone',
-        'website',
-        'created',
-        'updated',
-    ]
-    list_filter = [
-        'level',
-    ]
-    search_fields = [
-        'name',
-        'nces_id',
-    ]
-    inlines = [
-    ]
-    autocomplete_fields = [
-    ]
-
 
 
 @admin.register(User)

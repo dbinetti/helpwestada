@@ -13,7 +13,6 @@ from sentry_sdk import last_event_id
 
 urlpatterns = [
     path('', include('app.urls')),
-    path('sendgrid/', include('django_sendgrid_tracking.urls')),
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
     path('robots.txt', TemplateView.as_view(

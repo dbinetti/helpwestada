@@ -1,7 +1,6 @@
 # Standard Libary
 import csv
 
-import geocoder
 import requests
 # First-Party
 from auth0.v3.authentication import GetToken
@@ -14,7 +13,6 @@ from django.template.loader import render_to_string
 from django.utils.crypto import get_random_string
 from django_rq import job
 
-from .forms import SchoolForm
 from .models import Account
 from .models import User
 
@@ -167,26 +165,6 @@ def send_confirmation(user):
     )
     return email.send()
 
-@job
-def send_closing(user):
-    email = build_email(
-        template='app/emails/closing.txt',
-        subject='Final Update: Help West Ada project',
-        from_email='David Binetti <dbinetti@helpwestada.com>',
-        context={'user': user},
-        to=[user.email],
-    )
-    return email.send()
-
-@job
-def account_outreach(account):
-    email = build_email(
-        template='app/emails/outreach.txt',
-        subject='Help West Ada - Final Request',
-        from_email='David Binetti <dbinetti@helpwestada.com>',
-        to=[account.user.email],
-    )
-    return email.send()
 
 @job
 def delete_user_email(email_address):
@@ -197,122 +175,3 @@ def delete_user_email(email_address):
         to=[email_address],
     )
     return email.send()
-
-def schools_list(filename='wasd.csv'):
-    with open(filename) as f:
-        reader = csv.reader(
-            f,
-            skipinitialspace=True,
-        )
-        next(reader)
-        rows = [row for row in reader]
-        t = len(rows)
-        i = 0
-        errors = []
-        output = []
-        level = {
-            'Elementary': 100,
-            'Middle': 200,
-            'High': 300,
-        }
-        for row in rows:
-            i += 1
-            print(f"{i}/{t}")
-            school = {
-                'name': str(row[0]).strip().title(),
-                'nces_school_id': int(row[5]),
-                'phone': str(row[19]),
-                'website': str(row[6].replace(" ", "")) if row[6] !='†' else '',
-                'level': level[str(row[32])],
-            }
-            form = SchoolForm(school)
-            if not form.is_valid():
-                errors.append((row, form))
-            output.append(school)
-        if not errors:
-            return output
-        else:
-            print('Error!')
-            return errors
-
-# def geocode_address(raw):
-#     result = geocoder.google(raw)
-#     if not result.ok:
-#         raise Exception
-#     value = result.json
-#     mapping = {
-#         'raw': value.get('raw', ''),
-#         'street_number': value.get('housenumber', ''),
-#         'route': value.get('street', ''),
-#         'locality': value.get('city', ''),
-#         'postal_code': value.get('postal', ''),
-#         'state_code': value.get('state', ''),
-#         'country_code': value.get('country', ''),
-#         'latitude': value.get('lat', ''),
-#         'longitude': value.get('lng', ''),
-#     }
-# dict_keys(['accuracy', 'address', 'bbox', 'city', 'confidence', 'country', 'county', 'housenumber', 'lat', 'lng', 'ok', 'place', 'postal', 'quality', 'raw', 'state', 'status', 'street'])
-# {'street_number': '912',
-#  'route': 'East Covey Run Court',
-#  'raw': '912 East Covey Run Court, Eagle, ID, USA',
-#  'formatted': '912 E Covey Run Ct, Eagle, ID 83616, USA',
-#  'latitude': 43.7110071,
-#  'longitude': -116.3427846,
-#  'locality': 'Eagle',
-#  'postal_code': '83616',
-#  'state': 'Idaho',
-#  'state_code': 'ID',
-#  'country': 'United States',
-#  'country_code': 'US'}
-
-# In [20]: raw
-# Out[20]:
-# {'address_components': [{'long_name': '912',
-#    'short_name': '912',
-#    'types': ['street_number']},
-#   {'long_name': 'East Covey Run Court',
-#    'short_name': 'E Covey Run Ct',
-#    'types': ['route']},
-#   {'long_name': 'Eagle',
-#    'short_name': 'Eagle',
-#    'types': ['locality', 'political']},
-#   {'long_name': 'Ada County',
-#    'short_name': 'Ada County',
-#    'types': ['administrative_area_level_2', 'political']},
-#   {'long_name': 'Idaho',
-#    'short_name': 'ID',
-#    'types': ['administrative_area_level_1', 'political']},
-#   {'long_name': 'United States',
-#    'short_name': 'US',
-#    'types': ['country', 'political']},
-#   {'long_name': '83616', 'short_name': '83616', 'types': ['postal_code']},
-#   {'long_name': '4197',
-#    'short_name': '4197',
-#    'types': ['postal_code_suffix']}],
-#  'formatted_address': '912 E Covey Run Ct, Eagle, ID 83616, USA',
-#  'geometry': {'bounds': {'northeast': {'lat': 43.7111357, 'lng': -116.3425882},
-#    'southwest': {'lat': 43.7109158, 'lng': -116.3429569}},
-#   'location': {'lat': 43.7110071, 'lng': -116.3427845},
-#   'location_type': 'ROOFTOP',
-#   'viewport': {'northeast': {'lat': 43.71237473029149,
-#     'lng': -116.3414235697085},
-#    'southwest': {'lat': 43.70967676970849, 'lng': -116.3441215302915}}},
-#  'place_id': 'ChIJO3a6u3YAr1QRfGGPw6f6iyw',
-#  'types': ['premise'],
-#  'street_number': {'long_name': '912', 'short_name': '912'},
-#  'route': {'long_name': 'East Covey Run Court',
-#   'short_name': 'E Covey Run Ct'},
-#  'locality': {'long_name': 'Eagle', 'short_name': 'Eagle'},
-#  'political': {'long_name': 'United States', 'short_name': 'US'},
-#  'administrative_area_level_2': {'long_name': 'Ada County',
-#   'short_name': 'Ada County'},
-#  'administrative_area_level_1': {'long_name': 'Idaho', 'short_name': 'ID'},
-#  'country': {'long_name': 'United States', 'short_name': 'US'},
-#  'postal_code': {'long_name': '83616', 'short_name': '83616'},
-#  'postal_code_suffix': {'long_name': '4197', 'short_name': '4197'}}
-
-# In [21]: raw.keys()
-# Out[21]: dict_keys(['address_components', 'formatted_address', 'geometry', 'place_id', 'types', 'street_number', 'route', 'locality', 'political', 'administrative_area_level_2', 'administrative_area_level_1', 'country', 'postal_code', 'postal_code_suffix'])
-
-
-#     return mapping

@@ -1,9 +1,3 @@
-# Django
-import json
-import urllib
-
-import posthog
-from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 
 # Local
@@ -14,37 +8,27 @@ class Auth0Backend(ModelBackend):
 
     def authenticate(self, request, **kwargs):
         username = kwargs.get('username', None)
-        name = kwargs.get('name', '(Unknown)')
+        name = kwargs.get('name', None)
         email = kwargs.get('email', None)
-        if name == email:
-            name = 'Anonymous'
+        is_verified = kwargs.get('email_verified', False)
         try:
             user = User.objects.get(
                 username=username,
             )
+            user.name = name
+            user.email = email
+            user.is_verified = is_verified
+            user.data = kwargs
         except User.DoesNotExist:
             user = User(
                 username=username,
                 name=name,
                 email=email,
+                is_verified=is_verified,
+                data=kwargs,
             )
             user.set_unusable_password()
-            user.save()
-            posthog.capture(
-                str(user.id),
-                'Create Account',
-            )
-        encoded = request.COOKIES.get(f'ph_{settings.POSTHOG_API_KEY}_posthog', None)
-        if encoded:
-            decoded = json.loads(urllib.parse.unquote(encoded))
-            posthog.alias(
-                decoded['distinct_id'],
-                str(user.id),
-            )
-        posthog.identify(
-            str(user.id),
-            {'name': name, 'email': email,}
-        )
+        user.save()
         return user
 
     def get_user(self, user_id):

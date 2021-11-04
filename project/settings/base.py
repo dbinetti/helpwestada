@@ -251,11 +251,10 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django_rq',
     'reversion',
+    'fsm_admin',
     'cloudinary_storage',
     'cloudinary',
     'bootstrap4',
     'phonenumber_field',
-    'django_sendgrid_tracking',
-    'address',
     'app',
 ]

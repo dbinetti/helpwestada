@@ -16,8 +16,3 @@ brew "redis", restart_service: true
 brew "watchman"
 brew "getsentry/tools/sentry-cli"
 brew "heroku/brew/heroku"
-
-cask "github"
-cask "sublime-text"
-cask "sublime-merge"
-cask "tableplus"
