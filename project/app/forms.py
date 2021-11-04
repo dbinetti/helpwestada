@@ -34,24 +34,24 @@ class AccountForm(forms.ModelForm):
             'schools',
         ]
         labels = {
-            "is_diploma": "Do you have a High School Diploma or equivalent?",
-            "is_certificate": "Do you have an Idaho Teaching Certificate?",
-            "is_criminal": "Have you ever been convicted of a criminal offense other than a minor traffic violation?",
-            "is_offender": "Does your name appear on any sex offender database in any state or country?",
-            "is_wasd": "Have you ever worked for the West Ada School District?",
+            "is_diploma": "Click if you have a High School Diploma or equivalent.",
+            "is_certificate": "Click if you have an Idaho Teaching Certificate?",
+            "is_criminal": "Click if you have ever been convicted of a criminal offense other than a minor traffic violation.",
+            "is_offender": "Click if your name appears on any sex offender database in any state or country.",
+            "is_wasd": "Click if you have ever worked for the West Ada School District.",
         }
         widgets = {
             'criminal_notes': forms.Textarea(
                 attrs={
                     'class': 'form-control h-25',
-                    'placeholder': 'If yes, explain giving dates.',
+                    'placeholder': 'If you answered yes, explain giving dates.',
                     'rows': 5,
                 }
             ),
             'wasd_notes': forms.Textarea(
                 attrs={
                     'class': 'form-control h-25',
-                    'placeholder': 'If yes, state position, location, date left and reason for leaving.',
+                    'placeholder': 'If you answered yes, state position, location, date left and reason for leaving.',
                     'rows': 5,
                 }
             ),
