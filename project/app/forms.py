@@ -67,9 +67,9 @@ class AccountForm(forms.ModelForm):
             ),
         }
 
-        # help_texts = {
-        #     'is_bilingual': "If you speak Spanish, please click here.",
-        # }
+        help_texts = {
+            'schools': "Enter your preferred schools, separated by commas.  If you are willing to substitute anywhere, please leave blank.",
+        }
 
 
     def clean(self):
