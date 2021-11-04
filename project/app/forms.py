@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm as UserCreationFormBase
 # Local
 from .models import Account
 from .models import User
+from .widgets import AddressWidget
 
 
 class DeleteForm(forms.Form):
@@ -60,6 +61,9 @@ class AccountForm(forms.ModelForm):
                     'placeholder': 'Anything else we should know? (Optional)',
                     'rows': 5,
                 }
+            ),
+            'address': AddressWidget(
+                attrs={'style': "width: 600px;"}
             ),
         }
 

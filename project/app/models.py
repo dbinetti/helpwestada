@@ -29,7 +29,7 @@ class Account(models.Model):
     )
     address = models.CharField(
         max_length=512,
-        blank=True,
+        blank=False,
         default='',
     )
     email = models.EmailField(
@@ -68,6 +68,7 @@ class Account(models.Model):
             max_length=255,
         ),
         default=list,
+        blank=True,
     )
     notes = models.TextField(
         max_length=2000,
