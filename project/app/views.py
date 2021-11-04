@@ -30,7 +30,6 @@ from .tasks import send_email
 # Root
 def index(request):
     accounts = Account.objects.filter(
-        is_public=True,
     ).order_by('-created')
     total = Account.objects.count()
     return render(
@@ -150,7 +149,6 @@ def account(request):
     else:
         form = AccountForm(instance=account)
     accounts = Account.objects.filter(
-        is_public=True,
     ).order_by('-created')
     total = Account.objects.count()
     return render(
