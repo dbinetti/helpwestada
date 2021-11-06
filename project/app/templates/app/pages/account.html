@@ -13,7 +13,7 @@
       Thank You for Helping West Ada!
     </h2>
     <p class='lead mt-3'>
-      We are still working with the District to determine how best to utilize volunteers.  In the meantime please fill out the following form so we can reach you when positions become available.
+      Please provide the following information to sign up as a Beta tester for this program.  All of this information will be kept entirely private until we confirm with you that you wish to participate.
     </p>
   <section class='my-5'>
     <div class='card'>
@@ -26,8 +26,8 @@
             {% bootstrap_field form.name show_help=False show_label=True %}
             {% bootstrap_field form.email show_help=False show_label=True %}
             {% bootstrap_field form.phone show_help=False show_label=True %}
-            {% bootstrap_field form.address show_help=False show_label=True %}
-            {% bootstrap_field form.ssn show_help=False show_label=True %}
+            {% bootstrap_field form.address show_help=True show_label=True %}
+            {% bootstrap_field form.ssn show_help=True show_label=True %}
             {% bootstrap_field form.is_diploma show_help=False show_label=True %}
             {% bootstrap_field form.is_certificate show_help=False show_label=True %}
             {% bootstrap_field form.is_criminal show_help=False show_label=True %}
@@ -42,15 +42,15 @@
         </div>
       </div>
       <div class='card-footer'>
-          <div class='row'>
-            <div class='col-7'>
-              <small class='text-muted'>Your information is kept private unless you explicitly indicate otherwise.  Please contact <a href='mailto://support@helpwestada.com'>support@helpwestada.com</a> if you have any questions or need support.</small>
-            </div>
-            <div class='col-3 offset-2 text-right'>
-              <a href='{% url "delete" %}'><span class='text-danger'>Delete Account</span></a>
-            </div>
-          </div>
+        <p>
+          <small class='text-muted'>Your information is kept private unless you explicitly indicate otherwise.  Please contact <a href='mailto://support@helpwestada.com'>support@helpwestada.com</a> if you have any questions or need support.</small>
+        </p>
       </div>
+    </div>
+  </section>
+  <section>
+    <div class='text-right'>
+      <a href='{% url "delete" %}'><span class='text-danger'>Delete Account</span></a>
     </div>
   </section>
   {% comment %}

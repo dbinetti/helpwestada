@@ -39,6 +39,7 @@ class AccountForm(forms.ModelForm):
             "is_criminal": "Click if you have ever been convicted of a criminal offense other than a minor traffic violation.",
             "is_offender": "Click if your name appears on any sex offender database in any state or country.",
             "is_wasd": "Click if you have ever worked for the West Ada School District.",
+            "ssn": "Social Security Number",
         }
         widgets = {
             'criminal_notes': forms.Textarea(
@@ -69,6 +70,8 @@ class AccountForm(forms.ModelForm):
 
         help_texts = {
             'schools': "Enter your preferred schools, separated by commas.  If you are willing to substitute anywhere, please leave blank.",
+            'ssn': "Your social security number will be required for background checks; again, this will not be shared without your express approval.",
+            'address': "Your home address; again, this will not be shared without your express approval.",
         }
 
 
