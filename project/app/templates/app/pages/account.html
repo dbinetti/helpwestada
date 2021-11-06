@@ -53,32 +53,4 @@
       <a href='{% url "delete" %}'><span class='text-danger'>Delete Account</span></a>
     </div>
   </section>
-  {% comment %}
-  <section class='my-5'>
-    <div class='card'>
-      <h4 class='card-header'>Assignments</h4>
-      <div class="card-body">
-        <table class='table table-responsive'>
-          <tr>
-            <th class='col-3'>Name</th>
-            <th>Status</th>
-          </tr>
-          {% if assignments %}
-            <tr>
-              <td>{{assignment.position.name}}</td>
-              <td>{{assignment.get_status_display}}</td>
-            </tr>
-          {% else %}
-            <tr>
-              <td colspan=2>(No Assignments)</td>
-            </tr>
-          {% endif %}
-        </table>
-      </div>
-      <div class='card-footer'>
-        {% bootstrap_button "Add Assignment" button_type='link' href="#" size='large' button_class='btn-success' %}
-      </div>
-    </div>
-  </section>
-  {% endcomment %}
 {% endblock content %}

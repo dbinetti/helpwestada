@@ -24,6 +24,7 @@ urlpatterns = [
 
     # Account
     path('account', views.account, name='account',),
+    path('thanks/', TemplateView.as_view(template_name='app/pages/thanks.html'), name='thanks',),
 
     # Delete
     path('delete', views.delete, name='delete',),

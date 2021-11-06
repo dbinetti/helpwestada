@@ -1,0 +1,26 @@
+{% extends 'app/pages/base.html' %}
+
+{% block title %}Thank You!{% endblock title %}
+
+
+
+{% block content %}
+  <section class='my-5'>
+    <h2>
+      Thank You!
+    </h2>
+  </section>
+  <section class='my-5'>
+    <div class='col-lg-8'>
+      <p class='lead'>
+        Thank You for being willing to Help West Ada!
+      </p>
+      <p>
+        We are still in the early stages of this program; we'll let you know when things are ready to proceed on to the next stage.  Until then, you can ask any questions at <a href='mailto:support@helpwestada.com'>support@helpwestada.com</a> and we'll do our best to answer.
+      </p>
+      <p>
+        To remove your account and all personal information, you can <a href='{% url "delete" %}'>Delete Your Account</a>.   This will fully delete all data (logins, personal information, history, etc.) from our system.
+      </p>
+    </div>
+  </section>
+{% endblock content %}
