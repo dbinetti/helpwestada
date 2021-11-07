@@ -30,7 +30,6 @@ def account_post_save(sender, instance, created, **kwargs):
 def user_post_save(sender, instance, created, **kwargs):
     if created:
         create_account(instance)
-        send_confirmation.delay(instance)
         return
     update_auth0.delay(instance)
     return
