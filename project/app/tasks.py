@@ -159,7 +159,7 @@ def send_confirmation(user):
     email = build_email(
         template='app/emails/confirmation.txt',
         subject='Welcome to Help West Ada!',
-        from_email='David Binetti <dbinetti@helpwestada.com>',
+        from_email='Help West Ada Admin <admin@helpwestada.com>',
         context={'user': user},
         to=[user.email],
     )
@@ -171,7 +171,7 @@ def delete_user_email(email_address):
     email = build_email(
         template='app/emails/delete.txt',
         subject='Help West Ada - Account Deleted',
-        from_email='David Binetti <dbinetti@helpwestada.com>',
+        from_email='Help West Ada Admin <admin@helpwestada.com>',
         to=[email_address],
     )
     return email.send()

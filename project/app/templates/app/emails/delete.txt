@@ -2,11 +2,9 @@
 
 Per your request, we have deleted your Help West Ada account.
 
-If you have any questions or concerns please don't hesitate to reach out
-to me at dbinetti@helpwestada.com.
+If you have any questions or concerns please don't hesitate to reach out at support@helpwestada.com.
 
-Best,
-Dave
-
+Thank you,
+Help West Ada
 
 {% endautoescape %}

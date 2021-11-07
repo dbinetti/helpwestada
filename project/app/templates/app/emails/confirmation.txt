@@ -2,12 +2,13 @@
 
 Thank you for joining Help West Ada!
 
-We've just started this site and are still working out details of how it will work.  So for the time being please simply consider this email a friendly "Welcome!" and notification that as things develop I'll be certain to keep you updated.
+We've just started the program and are still working out details of how it will work.  For the time being please simply consider this email a friendly "Welcome!" and notification that as things develop we'll be certain to keep you updated.
 
-In the meantime if you need to reach me please don't hesitate to reach out at this email or by phone at 415.713.2126.
+If you have any questions in the meantime, please don't hesistate to reach out to support@helpwestada.com.
 
-Best,
-Dave
+Thanks again!
+
+Help West Ada
 
 
 {% endautoescape %}
