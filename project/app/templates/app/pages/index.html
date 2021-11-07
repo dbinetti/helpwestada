@@ -12,58 +12,125 @@
     </div>
     {% endcomment %}
     <div class='jumbotron'>
+      {% comment %}
       <div class='mb-5'>
         <h2 class='text-center'>
           <strong>Help West Ada!</strong>
         </h2>
       </div>
+      {% endcomment %}
       <div>
         <p class='lead'>
-          Help West Ada is a group of parents willing to volunteer as substitute teachers when the need arises.
-        </p>
-        <p class='lead'>
-          Help West Ada is a self-funded initiative of the West Ada Parents Association, working in partnership with the West Ada School District to help ensure our kids always can stay in school.
+          The West Ada School District needs substitute teachers.  The <strong>Help West Ada</strong> program is a streamlined process for training and enrolling parents as volunteer substitutes, designed in partnership between the <a href='https://www.westada.org'>West Ada School District</a> and <a href='https://www.westadaparents.com'>West Ada Parents Association</a> as a way to help ensure we can keep kids in school.
         </p>
       </div>
-      {% comment %}
-      <div class='mb-5'>
-        <h2 class='text-center'>
-          Let's Get <strong>Help West Ada</strong> School!
-        </h2>
-      </div>
-      {% endcomment %}
       <div class='my-5'>
-        <a href='{% url "join" %}' class="btn btn-success btn-block btn-lg">
+        <a href='{% url "login" %}' class="btn btn-success btn-block btn-lg">
           Register Here!
+        </a>
+        <br><br>
+        <a class="btn btn-outline-dark btn-lg btn-block" data-toggle="collapse" href="#learnmore" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Learn More
         </a>
       </div>
     </div>
   </section>
-  {% comment %}
-  <section class='mt-5'>
-    <div class="card">
-      <h5 class="card-header">Community Members</h5>
-      <div class="card-body">
-        <h5 class="card-title">Our movement currently has {{total}} members.</h5>
-        <p>Of the {{total}}, here are those who have elected to share their names publicly:</p>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for account in accounts %}
-              <tr>
-                <td>{{account.name}}</td>
-                <td>{{account.comments}}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+  <section class='collapse my-5' id='learnmore'>
+    <div class='my-2'>
+      <h5>
+        What is Help West Ada?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        The West Ada School District is in need of substitute teachers.  This program was designed to provide a streamlined process for training and enrolling parents as volunteer substitutes, as opposed to those who wish to pursue education as a career.  It was designed in partnership between the <a href='https://www.westada.org'>West Ada School District</a> and <a href='https://www.westadaparents.com'>West Ada Parents Association</a> as a way to help ensure we can keep kids in school.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        What is the process?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        We batch-process individual volunteers who register at this site, and then schedule a time to be fingerprinted by the District Office (this is a legal requirement for all who enter a classroom in a teaching capacity) and formally enroll in the program.  Next, you'll participate in a roughly two-hour online session to learn the basics of managing a classroom and school security.  Finally, you'll attend a single training session in a classroom with an experienced teacher to get familiar with substituting in class.  After that, you'll be ready to substitute should the need arise!
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        Do I get paid for this?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        No.  This program is specifically designed for those who wish to serve in a volunteer role on a "last resort" basis.  The District maintains a paid substitute program that you can review <a href='https://www.westada.org/SubstituteInfo'>here</a>.  Paid substitutes receive $80 per day, and they will be the first called to fill roles.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        Why the volunteer role if you can get paid?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        The paid substitute program requires additional forms, training, tax reporting and enrollment processes, and must be done in person at the District office in an all-day training session.  The paid program is designed for those who wish to pursue a career in education.  The Help West Ada program is focused on parents and patrons who are not seeking to enter the teaching profession, but are simply interested in helping the District on an as-needed basis when professional substitutes are not available.  Approaching this as a volunteer program makes for a lightweight, streamlined onboarding process that the paid program does not.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        How often will I be called to volunteer?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        It is difficult to estimate this, as we've never done the volunteer program before.  It is entirely possible you will never be called.  However, the important thing is that with sufficient participation the District will not need to close classrooms due to lack of available substitutes.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        Will I need to pay for anything?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        The District will pay for the required fingerprinting and background checks; we do not anticipate participants will have any out-of-pocket costs.  You may wish to take supplementary online classes on being a good substitute at your own expense, but this is not required.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        Do I get to pick the schools where I volunteer?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        Yes, you can indicate your preferences either by school, geographic region, or District-wide.  Schedulers will work with you to ensure any assignments are as convenient as possible.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        What is the experience like in the classroom?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        While the program is new, substitutes in general report that the process is easy, straightforward, and a fun experience!  As part of the onboarding you will pair up with a current teacher or substitute in class for a training session to see for yourself what the teaching experience is like.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        What are you doing with my personal information?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        Your information is provided to the West Ada District to enroll you in the program.  We do not share your information with any other parties.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        How secure is this site?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        We use 128-bit SSL encryption on all transactions and all security patches are updated automatically.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        Who is paying for this?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        This project is sponsored by the <a href='https://www.westadaparents.com'>West Ada Parents Association</a>.
+      </p>
+    </div>
+    <div class='my-2'>
+      <h5>
+        What if I have a question you haven't addressed?
+      </h5>
+      <p class='pl-4 col-lg-8'>
+        Please let us know at <a href='mailto:support@helpwestada.com'>support@helpwestada.com</a> so that we can add it to the FAQ!
+      </p>
     </div>
   </section>
-  {% endcomment %}
 {% endblock content %}
