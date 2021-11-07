@@ -10,6 +10,8 @@ class Auth0Backend(ModelBackend):
         username = kwargs.get('username', None)
         name = kwargs.get('name', None)
         email = kwargs.get('email', None)
+        if name == email:
+            name = 'Unknown'
         is_verified = kwargs.get('email_verified', False)
         try:
             user = User.objects.get(
