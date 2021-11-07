@@ -21,6 +21,15 @@ class AccountAdmin(VersionAdmin):
         'address',
         'email',
         'phone',
+        'ssn',
+        'is_diploma',
+        'is_certificate',
+        'is_criminal',
+        'criminal_notes',
+        'is_offender',
+        'is_wasd',
+        'wasd_notes',
+        'schools',
         'notes',
     ]
     list_display = [
