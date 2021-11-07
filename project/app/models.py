@@ -40,7 +40,7 @@ class Account(models.Model):
     )
     ssn = models.CharField(
         max_length=100,
-        blank=False,
+        blank=True,
     )
     is_diploma = models.BooleanField(
         default=False,
