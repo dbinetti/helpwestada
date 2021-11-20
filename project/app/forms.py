@@ -35,7 +35,7 @@ class AccountForm(forms.ModelForm):
         ]
         labels = {
             "is_diploma": "Click if you have a High School Diploma or equivalent.",
-            "is_certificate": "Click if you have an Idaho Teaching Certificate?",
+            "is_certificate": "Click if you have an Idaho Teaching Certificate.",
             "is_criminal": "Click if you have ever been convicted of a criminal offense other than a minor traffic violation.",
             "is_offender": "Click if your name appears on any sex offender database in any state or country.",
             "is_wasd": "Click if you have ever worked for the West Ada School District.",
