@@ -175,3 +175,46 @@ def delete_user_email(email_address):
         to=[email_address],
     )
     return email.send()
+
+
+def export_csv(filename='hwa.csv'):
+    with open(filename, 'w') as f:
+        writer = csv.writer(f)
+        cs = Account.objects.all()
+        r = [
+            'Status',
+            'Name',
+            'Address',
+            'Email',
+            'Phone',
+            'SSN',
+            'Has Diploma',
+            'Has Certificate',
+            'Criminal Conviction',
+            'Notes on Conviction',
+            'Sex Offender',
+            'WASD Experience',
+            'WASD Notes',
+            'School Preferences',
+            'Notes',
+        ]
+        writer.writerow(r)
+        for c in cs:
+            st = c.get_state_display()
+            writer.writerow([
+                st,
+                c.name,
+                c.address,
+                c.email,
+                c.phone,
+                c.ssn,
+                c.is_diploma,
+                c.is_certificate,
+                c.is_criminal,
+                c.criminal_notes,
+                c.is_offender,
+                c.is_wasd,
+                c.wasd_notes,
+                c.schools,
+                c.notes,
+            ])
