@@ -1,27 +1,26 @@
 {% autoescape off %}
 
-This will be the first -- and last -- update for the Help West Ada project.
+Thank you for participating in the Help West Ada project!
 
-As you may recall, I set up the Help West Ada website in response to the
-District's anticipated need for substitute teachers following the move to
-full-time, in-person K-12 instruction.  And you responded to this call, signing
-up to volunteer immediately -- thank you so much!
+As you know, earlier this year West Ada experienced a critical need
+for substitutes, and you answered the call by participating in our
+Beta test for volunteer subs.  Since then, the HWA approach has been
+formally incorporated into the Administration.  As such, there is no
+longer a need for this website, and we'll be shutting it down
+accordingly.
 
-However, apparently the situation has stabilized and there is no particular need
-for a parent-specific initiative at this time.  Accordingly, I'll be shuttering
-this site, effective immediately.   While your involvement wasn't needed in this
-particular project, I'm confident in speaking for the District when I say "thank
-you for being willing to step up!"  If you wish to serve as a substitute teacher
-regardless, please find additional information here:
+If you have any questions about being a volunteer substitute, please
+reach out to Cheryl Botkin, the West Ada Substitute Placement
+Administrator, at Botkin.Cheryl@westada.org.  She'll be able to
+answer any of your questions moving forward.
 
-https://www.westada.org/Page/22379
+As promised, as part of the shut down your account will be permanently
+deleted, along with your name, email, and any other personal
+information collected.  This will be the last email you receive.  If
+you'd like to reach me for any reason, please don't hesitate to call
+or text at 208.713.4599 or by email at dbinetti@gmail.com.
 
-As promised, as part of the shut down your account will be permanently deleted,
-along with your name, email, and any other personal information collected.  If
-you'd like to reach me for any reason, please don't hesitate to call or text at
-415.713.2126.
-
-Thank you again for all you do for our kids!
+Thank you again for stepping up!
 
 
 Best, Dave
